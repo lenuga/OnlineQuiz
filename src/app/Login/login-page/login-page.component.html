@@ -1,0 +1,49 @@
+<div class="card">
+<div class="container" style="background-color: rgb(77, 2, 60);" >
+    <br/>
+    <h1><b>LOGIN</b></h1>
+</div>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <!-- <i class="material-icons prefix">account_circle</i> -->
+        <!-- <label for="username">Username</label> -->
+        <br/>
+        <br/>
+        <input type="text" formControlName="username" placeholder="-Username-" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+    </div>
+    <br/>
+    <div class="form-group">
+        
+        <input type="password" formControlName="password" class="form-control" placeholder="-Password-" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+    </div>
+    <br/>
+    <div class="form-group">
+        <button [disabled]="loading" class="Button" type="submit">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Login
+        </button>
+        <!-- <input type="button" class="cancel" value="Cancel"/> -->
+    </div>
+</form>
+    <br/>
+    <br/>
+</div>
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 

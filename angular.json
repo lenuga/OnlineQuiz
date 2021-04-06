@@ -28,9 +28,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/custom-theme.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": [
+               "./node_modules/jquery/dist/jquery.js",
+               "./node_modules/bootstrap/dist/js/bootstrap.js" 
+            ]
           },
           "configurations": {
             "production": {
@@ -91,9 +97,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",   
+                "./node_modules/bootstrap/dist/css/bootstrap.css",
+                "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": [ 
+                "./node_modules/jquery/dist/jquery.js", 
+                "./node_modules/bootstrap/dist/js/bootstrap.js" ]
           }
         },
         "lint": {
@@ -124,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "quizApp"
+  "defaultProject": "quizApp",
+  "cli": {
+    "analytics": "7983d8e8-dd55-4728-9bc5-54f74a848fa1"
+  }
 }

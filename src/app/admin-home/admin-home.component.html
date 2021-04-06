@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <b class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        User
+        </b>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['create-user']">Add-user</a>
+          <a class="dropdown-item" [routerLink]="['user-list']">User-list</a>
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <b class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Question
+        </b>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['create-question']">Add-question</a>
+          <a class="dropdown-item"  [routerLink]="['list-question']">Question-list</a>
+        </div>
+      </li>
+    </ul>
+    
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+      <button class="btn btn-outline-lg my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+      <!-- <div class="list-group list-group-flush">
+        <button [routerLink]="['create-user']" class="list-group-item list-group-item-action bg-light">Create User</button>
+        <button [routerLink]="['user-list']" class="list-group-item list-group-item-action bg-light">User List</button>
+        <button [routerLink]="['create-question']" class="list-group-item list-group-item-action bg-light">Create Question</button>
+        <button [routerLink]="['list-question']" class="list-group-item list-group-item-action bg-light">List Question</button>
+        <button [routerLink]="['mcq-list']" class="list-group-item list-group-item-action bg-light">Mcq list</button>
+        <button [routerLink]="['create-mcq']" class="list-group-item list-group-item-action bg-light">create-mcq</button>
+      </div> -->
+
+       <router-outlet></router-outlet>
+
+
+       

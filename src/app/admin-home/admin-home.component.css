@@ -1,0 +1,16 @@
+
+.navbar{
+    background-color: rgb(121, 9, 93);
+}
+.nav-item{
+  color:white;
+}
+button{
+    color: white;
+}
+.dropdown-menu{
+    background-color: rgb(238, 121, 203);
+}
+.hover{
+    background-color: rgb(37, 2, 24);
+}

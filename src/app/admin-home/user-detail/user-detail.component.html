@@ -1,0 +1,52 @@
+<!-- <hr/>
+<h3 text-align: center>User Details</h3>
+<div class="form-group">   
+<b>UserId:</b>&nbsp;&nbsp;{{user.userId}}
+<br/><b>FirstName:</b>&nbsp;&nbsp;{{user.firstName}}
+<br/><b>LastName:</b>&nbsp;&nbsp;{{user.lastName}}
+<br/><b>EmaiID:</b>&nbsp;&nbsp;{{user.emailId}}
+<br/><b>Address:</b>&nbsp;&nbsp;{{user.address}} 
+<br/> <b>Username:</b>&nbsp;&nbsp;{{user.username}}
+<br/><b>UserType:</b>&nbsp;&nbsp;{{user.userType}}
+<br/><b>Phone No:</b>&nbsp;&nbsp;{{user.phoneNo}}
+</div> -->
+
+<div class="container">
+  <h2>This is:{{user.firstName}} {{user.lastName}}</h2>          
+  <table class="table">
+    <thead>
+      <tr>
+          <th>UserId:{{user.userId}}</th>
+          <td>{{user.userId}}</td>
+      </tr>
+      <tr>
+          <th>FirstName:</th>
+          <td>{{user.firstName}}</td>
+      </tr>
+      <tr>
+          <th>LastName:</th>
+          <td>{{user.lastName}}</td>
+      </tr>
+      <tr>   
+        <th>EmaiID:</th>
+        <td>{{user.emailId}}</td>
+      </tr> 
+      <tr>  
+        <th>Address:</th>
+        <td>{{user.address}}</td>
+      </tr>
+      <tr> 
+        <th>Username:</th>
+        <td>{{user.username}}</td>
+      </tr>
+      <tr>
+        <th>UserType:</th>
+        <td>{{user.userType}}</td>
+      </tr> 
+      <tr>
+        <th>Phone No:</th>
+        <td>{{user.phoneNo}}</td>
+      </tr>
+    </thead>
+  </table>
+</div>

@@ -1,0 +1,14 @@
+<hr/>
+<h3 text-align: center>Text Type Details</h3>
+<div class="form-group">   
+<b>QuestionId:</b>&nbsp;&nbsp;{{quiz.questionId}}
+<br/><b>QuestionContent:</b>&nbsp;&nbsp;{{quiz.questionContent}}
+<br/><b>QuestionTypeId:</b>&nbsp;&nbsp;{{quiz.questionTypeId}}
+<br/><b>Answers:</b>&nbsp;&nbsp;{{quiz.answers | json}}
+<br/>
+    <li *ngFor="let ans of quiz.answers">
+       <b>AnswerId:</b>{{ans.answerId}}<br/>
+       <b>AnswerContent:</b> {{ans.answerContent}}<br/>
+       <b>CorrectAnswer:</b>{{ans.correctAnswer}}<br/>
+    </li>
+</div>

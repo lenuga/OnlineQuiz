@@ -1,0 +1,91 @@
+
+<!-- Multiple Choice Questions -->
+<div class="card">
+<h1 *ngIf="isAddMode">Add Mcq</h1>
+<h1 *ngIf="!isAddMode">Edit Mcq</h1>
+<div class="card-body">
+<form [formGroup]= "mcqForm" (ngSubmit)= "onSubmit()">
+    <div class="container">
+        <br/>
+       <h2>MCQ Quiz</h2>
+    </div> 
+    <br/>
+            <div class="form-group">
+                 <b>Question:</b>
+                <input type="text" formControlName="questionContent" placeholder ="-Type your question-" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.questionContent.errors }" />
+                <div *ngIf="submitted && f.questionContent.errors" class="invalid-feedback">
+                    <div *ngIf="f.questionContent.errors.required"> Question Content is required</div>
+                </div>
+            </div>
+            <div class="form-row">
+               <div class="form-group col">
+                   <b>Quiz type:</b>
+                  <select formControlName ="questionTypeId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.questionTypeId.errors }">   
+                     <option [ngValue]="2">Mcq</option> 
+                     <option [ngValue]="1">Text</option>
+                  </select>
+                  <div *ngIf="submitted && f.questionTypeId.errors" class="invalid-feedback">
+                        <div *ngIf="f.questionTypeId.errors.required">QuizType is required</div>
+                  </div>
+               </div>
+            </div>  
+            <div class="form-group">
+                <b>Answers:</b>
+                <br/>
+                <!-- <input type="radio"> -->
+                  <input type="text" formControlName = "answerContent" class="form-control" placeholder="-answer-" [ngClass]="{ 'is-invalid': submitted && f.answerContent.errors }"  />
+                  <div *ngIf="submitted && f.answerContent.errors" class="invalid-feedback">
+                    <div *ngIf="f.answerContent.errors.required"> Answer is required</div>
+                   </div>
+                <br/>
+                <!-- <input type="radio"> -->
+                  <input type="text" formControlName = "answerContent" class="form-control" placeholder="-answer-" [ngClass]="{ 'is-invalid': submitted && f.answerContent.errors }"  />
+                      <div *ngIf="submitted && f.answerContent.errors" class="invalid-feedback">
+                          <div *ngIf="f.answerContent.errors.required"> Answer is required</div>
+                      </div>
+                     <br/>
+            </div>    
+             
+           <div class="form-group">
+                    <b>Number of Answers</b>
+                    <select formControlName = "numberOfAnswers" class="form-control" placeholder="~numberOfAnswers~" (change)="onChangeAnswers($event)" [ngClass]="{ 'is-invalid': submitted && f.numberOfAnswers.errors }">
+                        <option value=""></option>
+                        <option *ngFor="let i of [1,2,3]">{{i}}</option>
+                    </select>
+            </div>
+            
+            
+            <div *ngFor="let mcqAnswer of t.controls; let i = index" class="list-group list-group-flush">
+              <div class="list-group-item">
+                  <!-- <div [formGroup]="mcqAnswers" class="form-row"> -->
+                    <input type="text" formControlName ="answerContent" class="form-control" placeholder="-answer-"/>
+                <!-- </div>  -->
+              </div>
+            </div> 
+
+            <div class="form-group">
+               <b>Correct Answer:</b> 
+                <br/>
+                <!-- <input type="radio" formControlName="answer" class="answer-radio" [ngClass]="{ 'is-invalid': submitted && f.answer.errors }"  /> -->
+                <input type="text" formControlName = "correctAnswer" class="form-control" placeholder="-Correct Answer-" [ngClass]="{ 'is-invalid': submitted && f.correctAnswer.errors }"  />
+                <div *ngIf="submitted && f.correctAnswer.errors" class="invalid-feedback">
+                    <div *ngIf="f.correctAnswer.errors.required"> CorrectAnswer is required</div>
+                </div>
+            </div> 
+        <b>Image:</b>
+        <br/>
+        <input type="file" />
+        <div class="text-center">
+                     <!-- <button class="btn btn-success mr-1" type="submit" type="submit">Submit</button> -->
+                     <button [disabled]="loading" class="button">
+                        <span *ngIf="loading" class="spinner-grow spinner-grow-sm"></span>
+                        Save
+                    </button>
+                </div>
+        <!-- <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+           Submit
+        </button> -->
+</form> 
+</div>
+</div>
