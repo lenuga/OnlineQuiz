@@ -9,6 +9,7 @@ import { McqListComponent } from './admin-home/mcq-list/mcq-list.component';
 import { QuizDetailComponent } from './admin-home/quiz-detail/quiz-detail.component';
 import { UserDetailComponent } from './admin-home/user-detail/user-detail.component';
 import { UserListComponent } from './admin-home/user-list/user-list.component';
+import { EndComponent } from './end/end.component';
 // import { AuthenticationGuard } from './authentication.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginPageComponent } from './Login/login-page/login-page.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
 
   { path: 'login-page', component: LoginPageComponent},
   {path: 'home', component: HomeComponent },
+  {path: 'end-user', component: EndComponent},
   {path: 'admin-home', component: AdminHomeComponent, 
       children: [
       //{path: 'create-user', component: CreateUserComponent, canActivate: [AuthenticationGuard], data: { authorities: ['admin']}},

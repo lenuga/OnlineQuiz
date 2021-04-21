@@ -16,7 +16,7 @@ quiz={questionId:"", questionContent:"", questionTypeId:"", answers:"", answerCo
 
   ngOnInit(): void {
       this.questionId = this.route.snapshot.paramMap.get('questionId');
-    console.log(this.questionId);
+      console.log(this.questionId);
 
     this.service.quizDetails(this.questionId).subscribe(data =>{
       this.quiz =data;

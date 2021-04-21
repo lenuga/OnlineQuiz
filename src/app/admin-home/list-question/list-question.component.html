@@ -1,3 +1,12 @@
+
+<div class="container h-10">
+      <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+          <input class="search_input" type="text" placeholder="Search..."/>
+          <button class="search_icon" (click)="searchByQuiz()"><i class="fas fa-search" ></i></button>
+        </div>
+      </div>
+</div>
 <div class="form-group mr-1">
   </div>
   <div class="container">
@@ -30,6 +39,9 @@
                       <b> CorrectAnswer: </b><li>{{answer.correctAnswer}}</li>
                       <b> QuestionId : </b><li>{{answer.questionId}}</li>
                      </div>
+                     <li class="list" *ngFor="let answer of quiz.answers; index as i; trackBy: identify">
+                        {{answer | json}}
+                     </li>
                    </div>
                 </div>
             </td>
@@ -42,3 +54,18 @@
         </tbody>
       </table>
     </div>
+
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+    <div class="container">
+      <h1>Delete Account</h1>
+      <p>Are you sure you want to delete your account?</p>
+
+      <div class="clearfix">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <button type="button" class="deletebtn">Delete</button>
+      </div>
+    </div>
+
+  </div>

@@ -1,0 +1,16 @@
+.card{
+    background-color: white;
+}
+.container{
+    background-color: rgba(240, 204, 150, 0.603);
+    height: 250%;
+    width: 205%;
+    margin-top: 5%;
+    border-color: black;
+}
+li:hover{
+    color: rgb(25, 247, 62);
+}
+.determinate{
+    background-color: rgb(164, 70, 252);
+}

@@ -5,7 +5,8 @@
         <h1>Select Quiz Type</h1>
     </div>
 	<div class="form-group1">
-          <select formControlName ="quiz" class="select" (change)="chooseQuiz($event)">   
+          <select formControlName ="quiz" id="select" class="form-control" (change)="chooseQuiz($event)">              
+               <option value="null" disabled="true" [selected]="true">-Please select-</option> 
                <option value="Text">Text</option>
                <option value="Mcq">Mcq</option>
           </select>
@@ -36,6 +37,8 @@
                <div class="form-group col">
                    <b>Quiz type:</b>
                    <select formControlName ="questionTypeId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.questionTypeId.errors }">   
+                    <option value="null" disabled="true" [selected]="true">-Please select question type-</option>   
+                       <!-- <option [ngValue]="">-Please select question type-</option> -->
                        <option [ngValue]="1">Text</option>
                        <option [ngValue]="2">Mcq</option>
                    </select>

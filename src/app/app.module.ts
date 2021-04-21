@@ -28,6 +28,10 @@ import { QuizDetailComponent } from './admin-home/quiz-detail/quiz-detail.compon
 import { McqQuizComponent } from './mcq-quiz/mcq-quiz.component';
 import { McqDetailsComponent } from './admin-home/mcq-details/mcq-details.component';
 import { McqListComponent } from './admin-home/mcq-list/mcq-list.component';
+import { ResultComponent } from './result/result.component';
+import { QuizService } from './service/quizService/quiz.service';
+import { EndComponent } from './end/end.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -52,6 +56,8 @@ export function tokenGetter() {
     QuizDetailComponent,
     McqDetailsComponent,
     McqListComponent,
+    ResultComponent,
+    EndComponent,
 
  
   ],
@@ -64,6 +70,7 @@ export function tokenGetter() {
     HttpClientModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    NgxPaginationModule,
     ToastrModule.forRoot(),
     JwtModule.forRoot({
       config: {
@@ -74,7 +81,8 @@ export function tokenGetter() {
     }),
 
   ],
-  providers: [AuthenticationGuard,
+  providers: [QuizService,
+              AuthenticationGuard,
              { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })

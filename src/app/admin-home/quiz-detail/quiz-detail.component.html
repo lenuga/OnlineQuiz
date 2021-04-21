@@ -6,9 +6,10 @@
 <br/><b>QuestionTypeId:</b>&nbsp;&nbsp;{{quiz.questionTypeId}}
 <br/><b>Answers:</b>&nbsp;&nbsp;{{quiz.answers | json}}
 <br/>
-    <li *ngFor="let ans of quiz.answers">
-       <b>AnswerId:</b>{{ans.answerId}}<br/>
-       <b>AnswerContent:</b> {{ans.answerContent}}<br/>
-       <b>CorrectAnswer:</b>{{ans.correctAnswer}}<br/>
-    </li>
+<hr/>
+    <ul *ngFor="let ans of quiz.answers">
+      <li><b>AnswerId:</b>{{ans.answerId}}</li><br/>
+      <li><b>AnswerContent:</b> {{ans.answerContent}}</li><br/>
+       <li><b>CorrectAnswer:</b>{{ans.correctAnswer}}</li><br/>
+    </ul>
 </div>

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class QuizService {
-  question : any[] = [];
+  questions : any[] = [];
   seconds! : number;
   timer: any;
   qnProgress! : number;

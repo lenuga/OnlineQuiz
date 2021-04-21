@@ -12,7 +12,8 @@ export class ListQuestionComponent implements OnInit {
  questions: any[] =[];
  answers: any[] =[];
  choosenValue: string = '';
-  type: boolean = true;
+ type: boolean = true;
+ searchquiz: string = '';
 
   constructor( private quizService: QuizService,
                private router: Router,
@@ -25,10 +26,18 @@ export class ListQuestionComponent implements OnInit {
      });
   }
 
+  
+ identify(index: number, item:any) {
+      return item.id;
+   }
+
   deleteQuiz(id: number){
   this.quizService.deleteQuiz(id).subscribe(data => {
     console.log(data);
-    this.router.navigate(['/admin-home/list-question'], { relativeTo: this.route });
+    this.quizService.getQuizs().subscribe(x => {
+      this.questions = x;
+      console.log(x);
+     });  
   });
 }
 updateQuiz(id: number){
@@ -38,5 +47,17 @@ updateQuiz(id: number){
   quizDetails(id: number){
   this.router.navigate(['/admin-home/textQuiz-details/'+ id]);
 }   
- 
+ //Serach By Quiz
+searchByQuiz(){
+  if(this.searchquiz){
+    this.quizService.getQuizs().subscribe(data => {
+      this.questions  = data;
+      this.questions= this.questions.filter(p => p.questionContent.toLowerCase().includes(this.searchquiz.toLowerCase()));
+  });    
+  }else {
+    this.quizService.getQuizs().subscribe(data => {
+      this.questions = data;
+  });
+  }
+}
 }

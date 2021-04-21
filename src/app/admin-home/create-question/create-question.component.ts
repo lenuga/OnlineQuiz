@@ -38,7 +38,6 @@ export class CreateQuestionComponent implements OnInit {
     this.form = this.formBuilder.group({  
       questionContent: ["", Validators.required],
       questionTypeId: [, Validators.required],
-      //quiz : [""],
       answerContent: [""],
       correctAnswer: [""],
       img:[""],
@@ -113,7 +112,7 @@ export class CreateQuestionComponent implements OnInit {
             .pipe(first())
             .subscribe(() => {
                 this.toastr.success('Quiz added!!!');
-                this.router.navigate(['/list-question'], { relativeTo: this.route });
+                this.router.navigate(['/admin-home/list-question'], { relativeTo: this.route });
             })
             .add(() => this.loading = false);
     }
@@ -125,7 +124,7 @@ export class CreateQuestionComponent implements OnInit {
             .pipe(first())
             .subscribe(() => {
                 this.toastr.success('Text Quiz updated');
-                // this.router.navigate([''], { relativeTo: this.route });
+                this.router.navigate(['/admin-home/list-question'], { relativeTo: this.route });
             },err => {   
              this.toastr.error('error!'); 
           })

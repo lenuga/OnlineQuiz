@@ -4,7 +4,7 @@
     </a>
     <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" (click)="logOut()">Logout</a>
+          <button><a class="nav-link" (click)="logOut()">Logout</a></button>
         </li>
     </ul>
 </nav>   
@@ -12,14 +12,29 @@
 <!-- <div [ngStyle]="{'background-image': getUrl()}"> -->
 <!-- </div> -->
     <div class="container-fluid">
-     <h2>QUIZ</h2>
+         <h2>QUIZ</h2>
     </div>
-  <div class="card1">
-      <!-- <img src="https://t4.ftcdn.net/jpg/02/30/37/93/240_F_230379361_GdzubTAT5hxPTuNMMQq5TkLYNKM6WoCc.jpg" class="card-img" alt="img"/> -->
-    <img src="https://thumbs.dreamstime.com/b/ready-quiz-written-notebook-marker-pen-glasses-wooden-desk-business-concept-ready-quiz-118902066.jpg" class="card-img-top" alt="img">
-  </div>
-  <!-- <div class="card"></div> -->
-
-
-
-
+ <div class="col-sm-6">
+        <div class="card1">
+              <!-- <img src="https://t4.ftcdn.net/jpg/02/30/37/93/240_F_230379361_GdzubTAT5hxPTuNMMQq5TkLYNKM6WoCc.jpg" class="card-img" alt="img"/>  -->
+            <img src="https://thumbs.dreamstime.com/b/ready-quiz-written-notebook-marker-pen-glasses-wooden-desk-business-concept-ready-quiz-118902066.jpg" class="card-img-top" alt="img">
+        
+        <br/>
+        <br/>   
+        <p><b>
+             Following quiz provides Multiple Choice Questions (MCQs) and Text type questions related to Angular & Asp.net core. 
+             You will have to read all the given questions and click over the correct answer or type correct answer.
+        </b>
+        </p>
+        </div>
+ </div>
+ 
+        <div class="card">
+             <div class="container">
+                 <br/>
+                 <br/>
+                <h3>Test your knowledge</h3>
+             </div>
+             <app-user></app-user>
+</div>
+       

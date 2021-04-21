@@ -89,7 +89,7 @@ export class McqQuizComponent implements OnInit {
             .pipe(first())
             .subscribe(() => {
                 this.toastr.success('Mcq Quiz added!!!');
-                this.router.navigate(['/admin-home/list-mcq/'], { relativeTo: this.route });
+                this.router.navigate(['/admin-home/list-questions/'], { relativeTo: this.route });
             })
             .add(() => this.loading = false);
     }

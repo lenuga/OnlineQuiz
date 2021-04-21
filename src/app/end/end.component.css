@@ -1,0 +1,21 @@
+.card-img-top{
+    width: 70%;
+    height: 100%;
+    margin-left: 15%;
+    border-radius: 2pc;
+}
+.navbar{
+    background-color: rgb(90, 4, 90);
+}
+h1{
+    align-self: 20px;
+}
+.container{
+    margin-top: 20px;
+}
+
+button{
+    background-color: rgb(148, 3, 112);
+    border-radius: 1pc;
+    border-color: rgb(94, 2, 94);
+}

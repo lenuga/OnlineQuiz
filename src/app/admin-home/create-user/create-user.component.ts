@@ -11,9 +11,9 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
-   userId!: number;
+   userId! : number;
   createForm! :FormGroup;
-  isAddMode!: boolean;
+  isAddMode! : boolean;
   loading = false;
   submitted = false;
 

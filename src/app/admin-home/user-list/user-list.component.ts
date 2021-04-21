@@ -10,19 +10,32 @@ import { ServiceService } from 'src/app/service/service.service';
 export class UserListComponent implements OnInit {
   users: any[] = [];
   searchname: string = '';
+  config: any;
 
-  constructor(private service: ServiceService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private service: ServiceService, private router: Router, private route: ActivatedRoute) { this.config = {
+    itemsPerPage: 10,
+    currentPage: 1,
+    totalItems:this.users.length
+  };
+  }
 
   ngOnInit(): void {
     this.service.getUsers().subscribe(data => {
       this.users = data;
+      this.config = {
+        itemsPerPage: 10,
+        currentPage: 1,
+        totalItems:this.users.length
+      };
   });
   }
 
   deleteUser(id: number){
   this.service.deleteUser(id).subscribe(data => {
     console.log(data);
-    this.router.navigate(['/admin-home/user-list'], { relativeTo: this.route });
+    this.service.getUsers().subscribe(data => {
+      this.users = data;
+  });
   });
 }
 updateUser(id: number){
@@ -36,7 +49,7 @@ searchByName(){
   if(this.searchname){
     this.service.getUsers().subscribe(data => {
       this.users = data;
-      this.users= this.users.filter(p => p.name.toLowerCase().includes(this.searchname.toLowerCase()));
+      this.users= this.users.filter(p => p.firstName.toLowerCase().includes(this.searchname.toLowerCase()));
   });    
   }else {
     this.service.getUsers().subscribe(data => {
@@ -45,5 +58,9 @@ searchByName(){
   }
 }
 
+pageChanged(event: any){
+  console.log(event);
+  this.config.currentPage = event; 
+}
 
 }

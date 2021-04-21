@@ -16,10 +16,11 @@ h3{
 .form-group1{
     width: 0%;
 }
-.select{
+#select{
     width: 200px;
     margin-top: 0px;
     height: 30px;
+    color: rgb(13, 4, 65);
 }
 .card{
    height: 80%;

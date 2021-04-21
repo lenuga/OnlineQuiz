@@ -1,38 +1,63 @@
-<nav class="blue-grey">
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">Quiz</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li>
-          <button>Signout</button>
-        </li>
-      </ul>
-    </div>
-  </nav>
-<!-- <div class="row" *ngIf="quizService.question && this.quizService.qnProgress != 10">
+ <div class="col-sm-6">
+<div class="container">
+<div class="row" *ngIf="questions">
   <div class="col s8 offset-s2">
-    <span>Time Elapsed : {{quizService.displayTimeElapsed()}}</span>
-    <div class="progress">
-      <div class="determinate" [style.width.%]="(quizService.qnProgress+1)*10"></div>
-    </div>
-    <div class="card blue-grey darken-1">
-      <div class="card-content white-text">
-        <span class="card-title">{{quizService.qnProgress+1}}</span>
-        <p>{{quizService.question[quizService.qnProgress].Qn}}</p>
-        <div *ngIf="quizService.qns[quizService.qnProgress].ImageName!=null">
-          <img class="center" [src]="quizService.rootUrl+'/Images/'+quizService.qns[quizService.qnProgress].ImageName" style="width:350px;height:200px">
+        <span>Time Elapsed : {{quizService.displayTimeElapsed()}}</span>
+        <div class="progress" style="height: 5px;">
+           <div class="determinate" [style.width.%]="(quizService.qnProgress+1)*10"></div>
         </div>
+        <br/>
+       <div class="card">
+             <span class="card-title"><b>{{quizService.qnProgress+1}}</b></span>
+             <!-- <p *ngFor="let quiz of questions">
+                   {{quiz.questionContent}}
+             </p> -->
+             <p>{{questions[quizService.qnProgress].questionContent}}</p>
+             <!-- <p>{{questions[quizService.qnProgress].answers | json}}</p> -->
+               
+       </div> 
+       <br/>
+      <div class="card">
+            <div *ngFor="let option of questions[quizService.qnProgress].answers; let i = index;"> 
+                  <br/>                 
+               <ul class="collections answers">         
+                   <!-- <div *ngIf="option.questionTypeId !=1">
+                     <li><input type="text" id="i" placeholder="Type your answer" class="ans"/></li>
+                   </div> -->
+                   <!-- <div *ngIf="option.questionTypeId == 2" disabled="true"> -->
+                    <li *ngIf="option !=null" class="collection-item" (click)="answer(questions[quizService.qnProgress].questionId)">
+                        {{option.answerContent | json}}
+                     </li>
+                  <!-- </div> -->
+              </ul>  
+            </div>     
+                  <!-- <button  (click)="answer(questions[quizService.qnProgress].questionId)">Next</button> -->
+           
+               
       </div>
-      <div class="card-action">
-        <ul class="collection answer">
-          <ng-container *ngFor="let option of quizService.question[quizService.qnProgress].Options;let i = index">
-            <li *ngIf="option != null" class="collection-item" (click)="Answer(quizService.qns[quizService.qnProgress].QnID,i)">
-              {{option}}
-            </li>
-          </ng-container>
-        </ul>
-      </div>
-    </div>
+      
+  <!-- <div *ngFor="let quiz of questions">
+     <div *ngFor="let answer of quiz.answers; let i = index">                    
+       <input type="radio" [checked]="answer.selected" (change)='radioChecked(answer.id,i)' >  
+        <button type="button">save</button>                    
+     </div>
+  </div> -->
+ </div>
 
-  </div>
+</div>
+</div>
+</div>
+
+<!-- <div class="card" *ngFor="let quiz of questions; index as i;">
+      <div *ngIf="">
+        <h3>{{quiz.questionContent}}</h3>
+      </div>
+</div>
+
+<div class="card" *ngFor="let quiz of questions; index as i;">
+   <h3>{{quiz.questionContent}}</h3>
+   <div class="list-group" *ngFor="let answer of quiz.answers">
+         <h4>Choose your correct answer</h4>
+     <a href="#" class="list-group-item list-group-item-action">{{answer.answerContent}}</a>
+   </div>
 </div> -->
-

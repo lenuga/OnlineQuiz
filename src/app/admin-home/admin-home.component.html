@@ -6,8 +6,8 @@
         User
         </b>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" [routerLink]="['create-user']">Add-user</a>
-          <a class="dropdown-item" [routerLink]="['user-list']">User-list</a>
+          <a class="dropdown-item" [routerLink]="['create-user']">Add User</a>
+          <a class="dropdown-item" [routerLink]="['user-list']">Users List</a>
         </div>
       </li>
     </ul>
@@ -17,28 +17,34 @@
         Question
         </b>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" [routerLink]="['create-question']">Add-question</a>
-          <a class="dropdown-item"  [routerLink]="['list-question']">Question-list</a>
+          <a class="dropdown-item" [routerLink]="['create-question']">Add Question</a>
+          <a class="dropdown-item"  [routerLink]="['list-question']">Questions List</a>
         </div>
       </li>
     </ul>
     
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button class="btn btn-outline-lg my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="srch_wrpr" *ngIf="isVisible">
+        <input type="checkbox" name="" class="checkbox">
+        <div class="srch_sb_cnt">
+            <input type="text" name="text_bar" id="" class="sech_txt_inpt" placeholder="Type to search...">
+            <button class="srch_btn">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+             <ul class="navbar-nav">
+             <li class="nav-item">
+                <button><a class="nav-link" (click)="logOut()">Logout</a></button>
+             </li>
+             </ul>
+    
   </div>
 </nav>
-      <!-- <div class="list-group list-group-flush">
-        <button [routerLink]="['create-user']" class="list-group-item list-group-item-action bg-light">Create User</button>
-        <button [routerLink]="['user-list']" class="list-group-item list-group-item-action bg-light">User List</button>
-        <button [routerLink]="['create-question']" class="list-group-item list-group-item-action bg-light">Create Question</button>
-        <button [routerLink]="['list-question']" class="list-group-item list-group-item-action bg-light">List Question</button>
-        <button [routerLink]="['mcq-list']" class="list-group-item list-group-item-action bg-light">Mcq list</button>
-        <button [routerLink]="['create-mcq']" class="list-group-item list-group-item-action bg-light">create-mcq</button>
-      </div> -->
 
-       <router-outlet></router-outlet>
+   <h1>You are Admin</h1>
+
+  <router-outlet></router-outlet>
 
 
        
