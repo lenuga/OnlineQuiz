@@ -9,14 +9,14 @@
         <form [formGroup]= "createForm" (ngSubmit)= "onSubmit()">
             <div class="form-group">
                 <b>First Name:</b>
-                <input type="text" formControlName="firstName" placeholder="-Enter a firstname-" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                <input type="text" formControlName="firstName" placeholder="-Enter the firstname-" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
                 <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                     <div *ngIf="f.firstName.errors.required"> FirstName is required</div>
                 </div>
             </div>
             <div class="form-group">
                 <b>Last Name: </b>
-                <input type="text" formControlName="lastName" class="form-control" placeholder="-Enter a lastname-" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                <input type="text" formControlName="lastName" class="form-control" placeholder="-Enter the lastname-" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
                 <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                     <div *ngIf="f.lastName.errors.required"> LastName is required</div>
                 </div>
@@ -68,9 +68,9 @@
              <div class="form-group">
                 <b>Password: </b>
                 <input type="password" formControlName="password" placeholder="-Enter a valid password-" class="form-control"/>
-                <!-- <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">Password is required</div>
-                </div> -->
+                </div>
             </div>
                 <div class="text-center">
                      <!-- <button class="btn btn-success mr-1" type="submit" type="submit">Submit</button> -->

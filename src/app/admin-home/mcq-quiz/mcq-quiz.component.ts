@@ -15,11 +15,12 @@ export class McqQuizComponent implements OnInit {
   // type: boolean = false;
   questionId! : number;
   mcqForm! : FormGroup;
-  choosenValue: string = '';
+  choosenValue! : string;
   type: boolean = false;
   isAddMode!: boolean;
   loading = false;
   submitted = false;
+
 
   constructor( private formBuilder: FormBuilder,
                private quizService: QuizService, 
@@ -31,14 +32,16 @@ export class McqQuizComponent implements OnInit {
   ngOnInit(): void {
      this.mcqForm = this.formBuilder.group({
       questionContent:["", Validators.required],
-      questionTypeId:["", Validators.required],
+      questionTypeId:[2],
       img:[""],
+      type: [""],
+      answerContent_a: [""],
+      answerContent_b: [""],
       correctAnswer: [""],
       answerContent: [""],
-      extraAnswer: [""],
-      answer:[""],
+      mcqanswerContent:[""],
       numberOfAnswers:[""],
-      mcqAnswers: new FormArray([])
+      answers: new FormArray([]),            //answers
     });
     
         this.questionId = this.route.snapshot.params['questionId'];
@@ -55,7 +58,7 @@ export class McqQuizComponent implements OnInit {
 
 
    get f() { return this.mcqForm.controls; }
-   get t() { return this.f.mcqAnswers as FormArray; }
+   get t() { return this.f.answers as FormArray; }                //answers
 
  onSubmit() {
         this.submitted = true;
@@ -79,24 +82,34 @@ export class McqQuizComponent implements OnInit {
        const json:any = {};
       json.questionContent = value.questionContent;
       json.questionTypeId = value.questionTypeId;
-
-      json.answers = [];
-      json.answers.push({"answerContent" : value.answerContent, "correctAnswer" : value.correctAnswer, "questionId" : -1})
-
-  console.log(json);
+      json.ans_a = [];
+      json.ans_b = [];
+      json.ans_a.push({"answerContent" : value.answerContent, "correctAnswer" : value.correctAnswer, "questionId" : -1})
+      json.ans_b.push({"answerContent" : value.answerContent, "correctAnswer" : value.correctAnswer, "questionId" : -1})
+    
+    let numberOfAnswers = 0;
+     for (let i = 0; i < numberOfAnswers; i++){
+           json.ans.push({"answerContent" : value.answerContent, "correctAnswer" : value.correctAnswer, "questionId" : -1})
+        }
+     //   json.ans.push({"answerContent" : value.answerContent, "correctAnswer" : value.correctAnswer, "questionId" : -1})
+        json.answers = [json.ans_a , json.ans_b];
+        // json.answers = [];
+        // json.answers.push({"answerContent" : value.answerContent, "correctAnswer" : value.correctAnswer, "questionId" : -1})
+         console.log(json);
        
         this.quizService.createQuiz(json)
             .pipe(first())
             .subscribe(() => {
                 this.toastr.success('Mcq Quiz added!!!');
-                this.router.navigate(['/admin-home/list-questions/'], { relativeTo: this.route });
-            })
+                this.router.navigate(['/admin-home/list-question'], { relativeTo: this.route });            })
             .add(() => this.loading = false);
     }
 
     updatequiz(): void {
+
          this.mcqForm.value.questionId = +this.questionId;
-if(this.questionId){
+
+        if(this.questionId){
         this.quizService.updateQuiz(this.mcqForm.value)
             .pipe(first())
             .subscribe(() => {
@@ -109,11 +122,11 @@ if(this.questionId){
         }  
     }
           
-  //      chooseQuiz(event: any){
-  //   console.log(event.target.value);
-  //   this.choosenValue = event.target.value;
-  //   this.choosenValue == 'Text'? this.type = true: this.type = false;
-  // }
+//     chooseQuiz(event: any){
+//     console.log(event.target.value);
+//     this.choosenValue = event.target.value;
+//     this.choosenValue == 'Text'? this.type = true: this.type = false;
+//   }
 
 
      onReset(event: any) {
@@ -122,20 +135,17 @@ if(this.questionId){
         this.mcqForm.reset();
 
     }
-
-    // addAnswers(){
-    //      let addAnswer = document.getElementById('answer3');
-    //     // addAnswer.style.display= "block";
-    //     addAnswer?.removeAttribute("style");
-    // }
-
+selectType(event: any){
+    console.log(event.target.value);
+}
      onChangeAnswers(e: any) {
+         console.log(e.target.value);
         const numberOfAnswers = e.target.value || 0;
         if (this.t.length < numberOfAnswers) {
             for (let i = this.t.length; i < numberOfAnswers; i++) {
-              console.log(numberOfAnswers);
+                console.log(numberOfAnswers);
                 this.t.push(this.formBuilder.group({
-                   answerContent: [""],
+                          answerContent: [''],    
                 }));
             }
         } else {

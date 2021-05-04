@@ -1,28 +1,29 @@
-<nav class="navbar">
-  <div class="container">
-	<div class="form-row">
-        <br/>
-        <h1>Select Quiz Type</h1>
-    </div>
-	<div class="form-group1">
-          <select formControlName ="quiz" id="select" class="form-control" (change)="chooseQuiz($event)">              
-               <option value="null" disabled="true" [selected]="true">-Please select-</option> 
+
+<div id="accordion" *ngIf="isAddMode">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+            <!-- <form [formGroup]= "selectForm"> -->
+	      <div class="dropdown">
+          <select class="form-control" (change)="chooseQuiz($event)">              
+               <option value="" disabled="true" [selected]="true">-Select the type of question-</option> 
                <option value="Text">Text</option>
                <option value="Mcq">Mcq</option>
           </select>
-	</div>
-  </div>    
-</nav>
+	   </div>
+      <!-- </form> -->
+      </div>
+  </div>
+</div>
 
 <!-- Text type question -->
 <div class="card" *ngIf = "type">
     <br/>
-<h3 *ngIf="isAddMode">Add Text Type Quiz</h3>
-<h3 *ngIf="!isAddMode">Edit Text Type Quiz</h3>
+<h3 *ngIf="isAddMode">Add Text</h3>
+<h3 *ngIf="!isAddMode">Edit Text</h3>
 <div class="card-body">
-<div class="container" style="background-color: rgb(62, 10, 110); height: 20%;" >
+<div class="container" style="background-color: rgb(121, 9, 112); height: 20%; border-radius: 1pc;" >
     <br/>
-     <h2>Text type quiz</h2>
+     <h2>Text quiz</h2>
 </div>
    
   <form [formGroup]= "form" (ngSubmit)= "onSubmit()"> 
@@ -36,24 +37,24 @@
             <div class="form-row">
                <div class="form-group col">
                    <b>Quiz type:</b>
-                   <select formControlName ="questionTypeId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.questionTypeId.errors }">   
-                    <option value="null" disabled="true" [selected]="true">-Please select question type-</option>   
-                       <!-- <option [ngValue]="">-Please select question type-</option> -->
-                       <option [ngValue]="1">Text</option>
-                       <option [ngValue]="2">Mcq</option>
+                   <select formControlName ="questionTypeId" id="selection" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.questionTypeId.errors }">   
+                    <!-- <option value="null" disabled="true" [selected]="true">-Please select question type-</option>    -->
+                       <!-- <option [ngValue]="1" [selected]="true">Text</option> -->
+                         <option [ngValue]="1" >Text</option>
+                         <!-- <option [ngValue]="2">Mcq</option> -->
                    </select>
                </div>    
                <div *ngIf="submitted && f.questionTypeId.errors" class="invalid-feedback">
                         <div *ngIf="f.questionTypeId.errors.required">QuestionTypeId is required</div>
                </div>
 		    </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <b>Answer:</b>
-                <input type="text" formControlName="answerContent" placeholder ="-Type your answer-" class="form-control" />
-                <!-- <div *ngIf="submitted && f.QuestionContent.errors" class="invalid-feedback">
+                <input type="text" formControlName="answerContent" placeholder ="-Type your answer-" class="form-control" disable="true"/>
+                <div *ngIf="submitted && f.QuestionContent.errors" class="invalid-feedback">
                     <div *ngIf="f.QuestionContent.errors.required"> Question is required</div>
-                </div> -->
-            </div>
+                </div>
+            </div> -->
             <div class="form-group">
                 <b>Correct Answer:</b>
                 <input type="text" formControlName="correctAnswer" placeholder ="-Type your correctanswer-" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.correctAnswer.errors }"  />

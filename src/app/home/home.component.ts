@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { QuizService } from '../service/quizService/quiz.service';
+
 
 @Component({
   selector: 'app-home',
@@ -8,11 +11,29 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  [x: string]: any;
+  questions: any[] = [];
+  userAns : any[] = [];
+  loading: boolean = false;
+  submitted: boolean = false;
+  form!: FormGroup;
 
-  constructor(private router: Router, private jwtHelper: JwtHelperService) { }
+
+  constructor(  private router: Router, 
+                private jwtHelper: JwtHelperService,
+                private quizService: QuizService,
+                private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+         userAnswer: [""],
+    });
+    this.quizService.getQuizs().subscribe( data =>{
+      this.questions = data;
+    });
   }
+
+  // get f() { return this.form.controls; }
 
   isAuthenticated() {
     const token = localStorage.getItem("jwt");
@@ -29,8 +50,15 @@ export class HomeComponent implements OnInit {
     this.router.navigate(["/login-page"]);
   }
   
-  // getUrl()
-  // {
-  //  return "url('https://t4.ftcdn.net/jpg/02/30/37/93/240_F_230379361_GdzubTAT5hxPTuNMMQq5TkLYNKM6WoCc.jpg')";
-  // }
+  onSubmit(){
+    this.submitted = true;
+    this.loading = true;
+
+    this.quizService.createUserAnswer(this.userAns).subscribe(data =>{
+     this.userAns = data;
+     this.form.reset();
+      this.toastr.success('Congratulation !!!You are Successfully completed!!!');
+       this.router.navigate(['/end-user'], { relativeTo: this.route });
+    })
+  }
 }

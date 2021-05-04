@@ -13,7 +13,8 @@ import { EndComponent } from './end/end.component';
 // import { AuthenticationGuard } from './authentication.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginPageComponent } from './Login/login-page/login-page.component';
-import { McqQuizComponent } from './mcq-quiz/mcq-quiz.component';
+import { McqQuizComponent } from './admin-home/mcq-quiz/mcq-quiz.component';
+import { CreateQuizComponent } from './admin-home/create-quiz/create-quiz.component';
 
 const routes: Routes = [
 
@@ -36,11 +37,13 @@ const routes: Routes = [
       {path: 'textQuiz-details', component: QuizDetailComponent},
       {path: 'textQuiz-details/:questionId', component: QuizDetailComponent},
       {path: 'create-mcq', component: McqQuizComponent},
-      {path: 'create-mcq/:mcqId', component: McqQuizComponent},
+      {path: 'create-mcq/:questionId', component: McqQuizComponent},
       {path: 'mcq-list', component: McqListComponent},
       {path: 'mcq-list/:mcqId', component: McqListComponent},
       {path: 'mcq-details', component: McqDetailsComponent},
       {path: 'mcq-details/:mcqId', component: McqDetailsComponent},
+      {path: 'create-quiz', component: CreateQuizComponent},
+      {path: 'create-quiz/:questionId', component: CreateQuizComponent},
     ]},
       { path: '', redirectTo: 'login-page',  pathMatch: 'full'},
 ];

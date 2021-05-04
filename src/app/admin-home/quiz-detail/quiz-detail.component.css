@@ -1,0 +1,15 @@
+.container{
+    height: 100%;
+    width: 90%;
+    border-color: rgb(53, 5, 53);
+}
+td,h2{
+    color: rgb(241, 80, 233);
+}
+button{
+    border-radius: 4pc;
+    background-color: rgb(167, 11, 141);
+}
+li{
+    color: rgb(190, 30, 177);
+}

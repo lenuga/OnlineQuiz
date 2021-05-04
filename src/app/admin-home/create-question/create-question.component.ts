@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { QuizService } from 'src/app/service/quizService/quiz.service';
 import { first } from 'rxjs/operators';
 
-export enum Question {
+export enum Quiz {
     Text = 'Text',
     Mcq = 'Mcq'
 }
@@ -17,11 +17,13 @@ export enum Question {
 export class CreateQuestionComponent implements OnInit {
   questionId! : number;
   form! :FormGroup;
+  selectForm! : FormGroup;
   choosenValue: string = '';
   type: boolean = true;
-  isAddMode!: boolean;
+  isAddMode! : boolean;
   loading = false;
   submitted = false;
+  isAdd! : boolean;
 
 
 
@@ -34,12 +36,15 @@ export class CreateQuestionComponent implements OnInit {
     }
 
   ngOnInit(): void {
- 
+//  this.selectForm = this.formBuilder.group({
+//     type:[""],
+//  });
     this.form = this.formBuilder.group({  
       questionContent: ["", Validators.required],
-      questionTypeId: [, Validators.required],
+      questionTypeId: [1],
       answerContent: [""],
       correctAnswer: [""],
+      // type: ["Text"],
       img:[""],
     });
 
@@ -57,28 +62,6 @@ export class CreateQuestionComponent implements OnInit {
 
    get f() { return this.form.controls; }
  
-  //  onSubmit() {
-  //   // stop here if form is invalid
-  //   if (this.createQuiz.invalid) {
-  //     this.toastr.error('please fill the all fields');
-  //         return;
-  //   }
-
-  //   if(this.createQuiz.value.textId){
-  //     this.quizService.updateTextQuiz(this.createQuiz.value).subscribe(data => {
-  //       debugger
-  //       this.toastr.success('Success!', 'Updated successfully!');
-  //     }); 
-  //   }
-  //   else{
-  //   this.quizService.createTextQuiz(this.createQuiz.value).subscribe(data => {
-  //       //debugger
-  //       this.toastr.success('Success!', 'Inserted successfully!');
-  //       this.router.navigate(['/user-list']);
-  //      });
-  //     };
-      
-  //   }
   onSubmit() {
         this.submitted = true;
 
@@ -102,11 +85,12 @@ export class CreateQuestionComponent implements OnInit {
        const json:any = {};
       json.questionContent = value.questionContent;
       json.questionTypeId = value.questionTypeId;
+      // json.type = value.type;
 
       json.answers = [];
       json.answers.push({"answerContent" : value.answerContent, "correctAnswer" : value.correctAnswer, "questionId" : -1})
 
-  console.log(json);
+      console.log(json);
 
         this.quizService.createQuiz(json)
             .pipe(first())
@@ -118,8 +102,22 @@ export class CreateQuestionComponent implements OnInit {
     }
 
     updatequiz(): void {
-         this.form.value.questionId = +this.questionId;
 
+         this.form.value.questionId = +this.questionId;
+         
+        if(this.questionId != null)
+        {
+      console.log(this.form.value);
+      //  const value = this.form.value;
+      //  const json:any = {};
+      // json.questionContent = value.questionContent;
+      // json.questionTypeId = value.questionTypeId;
+      // json.type = value.type;
+
+      // json.answers = [];
+      // json.answers.push({"answerContent" : value.answerContent, "correctAnswer" : value.correctAnswer, "questionId" : -1})
+
+      // console.log(json);
         this.quizService.updateQuiz(this.form.value)
             .pipe(first())
             .subscribe(() => {
@@ -129,14 +127,13 @@ export class CreateQuestionComponent implements OnInit {
              this.toastr.error('error!'); 
           })
             .add(() => this.loading = false);
-        
+        }
     }
-    
-       chooseQuiz(event: any){
+
+    chooseQuiz(event: any){
     console.log(event.target.value);
     this.choosenValue = event.target.value;
     this.choosenValue == 'Text'? this.type = true: this.type = false;
- 
   }
 
 }

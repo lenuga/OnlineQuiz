@@ -1,15 +1,35 @@
-<hr/>
-<h3 text-align: center>Text Type Details</h3>
-<div class="form-group">   
-<b>QuestionId:</b>&nbsp;&nbsp;{{quiz.questionId}}
-<br/><b>QuestionContent:</b>&nbsp;&nbsp;{{quiz.questionContent}}
-<br/><b>QuestionTypeId:</b>&nbsp;&nbsp;{{quiz.questionTypeId}}
-<br/><b>Answers:</b>&nbsp;&nbsp;{{quiz.answers | json}}
-<br/>
-<hr/>
-    <ul *ngFor="let ans of quiz.answers">
-      <li><b>AnswerId:</b>{{ans.answerId}}</li><br/>
-      <li><b>AnswerContent:</b> {{ans.answerContent}}</li><br/>
-       <li><b>CorrectAnswer:</b>{{ans.correctAnswer}}</li><br/>
-    </ul>
+<div class="container">
+    <button (click)="goBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+  <h2>This is:{{quiz.questionId}} Question</h2>          
+  <table class="table">
+    <thead>
+      <tr>
+          <th>quizId:{{quiz.questionId}}</th>
+          <td>{{quiz.questionId}}</td>
+      </tr>
+      <tr>
+          <th>Question</th>
+          <td>{{quiz.questionContent}}</td>
+      </tr>
+      <tr>
+          <th>QuestionTypeId:</th>
+          <td>{{quiz.questionTypeId}}</td>
+      </tr>
+      <tr>   
+        <th>Answers:</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td *ngFor="let answer of quiz.answers | keyvalue">
+          <ul>
+            <li><b>Id:</b> {{answer.value.answerId | json}}</li>
+            <li><b>AnswerContent:</b> {{answer.value.answerContent}}</li>
+            <li><b>CorrectAnswer:</b> {{answer.value.correctAnswer}}</li>
+          </ul>
+         
+        </td>
+      </tr> 
+    </thead>
+  </table>
 </div>

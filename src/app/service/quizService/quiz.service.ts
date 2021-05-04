@@ -22,6 +22,12 @@ export class QuizService {
   //   return user.username;
   // }
 
+  createUserAnswer(para: any):Observable<any> {
+    const url = `https://localhost:44307/api`;
+    console.log(para);
+    return this.http.post<any>(url, para);
+  }
+
 createQuiz(params: any):Observable<any> {
   const url = `https://localhost:44307/api/Questions/create`;
   console.log(params);
@@ -34,9 +40,12 @@ updateQuiz(update: any){
     console.log(update);
     return this.http.put<any>(url, update);   
 }
-
+getAll(){
+  const url = 'https://localhost:44307/api/Questions/getAll';
+  return this.http.get<any[]>(url);
+}
  getQuizs() {
-    const url =`https://localhost:44307/api/Questions/answer`;
+    const url =`https://localhost:44307/api/Questions/answer`;      //random 10 questions
     return this.http.get<any[]>(url);
   }
 

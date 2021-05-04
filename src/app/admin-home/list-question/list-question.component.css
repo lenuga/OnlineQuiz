@@ -1,12 +1,12 @@
  .searchbar{
     height: 60px;
-    background-color: #8a0d9b;
+    background-color: #ce37ba;
     border-radius: 30px;
     padding: 10px;
     }
 
     .search_input{
-    color: white;
+    text-emphasis-color: white;
     border: 0;
     outline: 0;
     background: none;
@@ -25,7 +25,7 @@
 
     .searchbar:hover > .search_icon{
     background: white;
-    color: #e74c3c;
+    color: #7915bd;
     }
 
     .search_icon{
@@ -36,6 +36,27 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    color:white;
+    color:rgb(78, 5, 5);
     text-decoration:none;
     }
+
+button.search_icon{
+   color:rgb(221, 149, 191);
+   border-radius: 2pc;
+   background-color: rgb(104, 5, 63);
+}
+
+.add{
+  background-color: rgb(238, 74, 197);
+  border-radius: 5pc;
+}
+.footer{
+   margin-left: 15%;
+}
+tr:hover{
+  background-color:rgb(248, 175, 236);
+  border-radius: 3pc;
+}
+.container{
+ width: 2500px;
+}

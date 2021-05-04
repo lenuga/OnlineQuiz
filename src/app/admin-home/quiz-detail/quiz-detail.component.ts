@@ -23,7 +23,9 @@ quiz={questionId:"", questionContent:"", questionTypeId:"", answers:"", answerCo
       console.warn(data);
       console.log(data);
     });
-  
   }
 
+  goBack(){
+    this.router.navigate(['/admin-home/list-question'], { relativeTo: this.route });
+  }
 }

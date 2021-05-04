@@ -13,10 +13,11 @@
     </ul>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">
-        <b class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <b class="dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Question
         </b>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['create-quiz']">Quiz</a>
           <a class="dropdown-item" [routerLink]="['create-question']">Add Question</a>
           <a class="dropdown-item"  [routerLink]="['list-question']">Questions List</a>
         </div>
@@ -35,7 +36,7 @@
 
              <ul class="navbar-nav">
              <li class="nav-item">
-                <button><a class="nav-link" (click)="logOut()">Logout</a></button>
+                <button class="button"><a class="nav-link" (click)="logOut()">Logout</a></button>
              </li>
              </ul>
     

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from 'src/app/service/service.service';
 
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -11,33 +12,50 @@ export class UserListComponent implements OnInit {
   users: any[] = [];
   searchname: string = '';
   config: any;
+  orderBy: any;
+  userId: number = 0;
+  loading = false;
 
   constructor(private service: ServiceService, private router: Router, private route: ActivatedRoute) { this.config = {
-    itemsPerPage: 10,
+    itemsPerPage: 5,
     currentPage: 1,
     totalItems:this.users.length
   };
   }
 
-  ngOnInit(): void {
-    this.service.getUsers().subscribe(data => {
+  async ngOnInit(){
+    await this.service.getUsers().subscribe(data => {
       this.users = data;
       this.config = {
-        itemsPerPage: 10,
+        itemsPerPage: 5,
         currentPage: 1,
         totalItems:this.users.length
       };
+      if(data){
+        this.sortData();
+      }
   });
-  }
 
-  deleteUser(id: number){
-  this.service.deleteUser(id).subscribe(data => {
+  }
+ 
+  deleteUser(){
+  this.service.deleteUser(this.userId).subscribe(data => {
     console.log(data);
     this.service.getUsers().subscribe(data => {
       this.users = data;
+      this.config = {
+        itemsPerPage: 5,
+        currentPage: 1,
+        totalItems:this.users.length
+      };
+      if(data){
+        this.sortData();
+      }
   });
+     this.refresh();
   });
 }
+
 updateUser(id: number){
    this.router.navigate(['/admin-home/create-user/' + id]); 
 }
@@ -63,4 +81,14 @@ pageChanged(event: any){
   this.config.currentPage = event; 
 }
 
+
+setDelete(id: number){
+ this.userId = id;
+}
+sortData(){
+          this.users = this.users.sort((a,b)=> b.userId - a.userId);
+}
+refresh(): void {
+    window.location.reload();
+}
 }

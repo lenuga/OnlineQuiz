@@ -6,3 +6,7 @@
 td,h2{
     color: rgb(241, 80, 233);
 }
+button{
+    background-color: rgb(160, 12, 140);
+    border-radius: 4pc;
+}

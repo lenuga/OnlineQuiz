@@ -33,7 +33,7 @@ export class CreateUserComponent implements OnInit {
       phoneNo:["", [Validators.required,  Validators.pattern("^[0-9]*$")]],
       userType:["", Validators.required],
       username:["", Validators.required],
-      password:[""],
+      password:["", Validators.required],
      
     });
 
@@ -41,20 +41,6 @@ export class CreateUserComponent implements OnInit {
    this.userId = this.route.snapshot.params['userId'];
     console.log(this.userId);
     this.isAddMode = !this.userId;
-    // this.service.getUserByUserId(this.userId).subscribe(data =>{
-    //     console.log(data);
-    //     this.createForm.patchValue({
-    //        userId: data.userId,
-    //        firstName: data.firstName,
-    //        lastName: data.lastName,
-    //        emailId: data.emailId,
-    //        address: data.address,
-    //        phoneNo: data.phoneNo,
-    //        username: data.username,
-    //        userType: data.userType,
-    //       password: data.password
-    //     });
-    // })
 
         if (!this.isAddMode) {
             this.service.getUserByUserId(this.userId)
@@ -67,33 +53,6 @@ export class CreateUserComponent implements OnInit {
 
 
   get f() { return this.createForm.controls; }
-
-  // onSubmit() {
-  //   // stop here if form is invalid
-  //   if (this.createForm.invalid) {
-  //     this.toastr.error('please fill the all fields');
-  //         return;
-  //     }
-  //       // console.log(this.createForm.value);
-  //       if(this.userId == null)
-  //       {
-  //         this.service.createUser(this.createForm.value).subscribe(u => {
-  //         debugger
-  //         console.log(u);
-  //         this.toastr.success('Success!', 'Inserted successfully!'); 
-  //         },err => {   
-  //            this.toastr.error('error!'); 
-  //         }); 
-  //       }else
-  //       {
-  //         this.service.updateUser(this.createForm.value).subscribe(data => {
-  //           debugger
-  //           this.toastr.success('Updated Successfully');
-  //         });
-  //       }
-          
-     
-  //    }
 
   onSubmit() {
         this.submitted = true;
@@ -132,7 +91,7 @@ export class CreateUserComponent implements OnInit {
                 this.router.navigate(['/admin-home/user-list'], { relativeTo: this.route });
             })
             .add(() => this.loading = false);
-        }
+      }
     }
 
 }

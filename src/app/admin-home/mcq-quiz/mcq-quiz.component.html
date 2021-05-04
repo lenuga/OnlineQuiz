@@ -1,15 +1,15 @@
 
 <!-- Multiple Choice Questions -->
-<div class="card">
-<h1 *ngIf="isAddMode">Add Mcq</h1>
-<h1 *ngIf="!isAddMode">Edit Mcq</h1>
+<div class="card" *ngIf="isAddMode">
+<h3 *ngIf="isAddMode">Add Mcq</h3>
+<h3 *ngIf="!isAddMode">Edit Mcq</h3>
 <div class="card-body">
 <form [formGroup]= "mcqForm" (ngSubmit)= "onSubmit()">
-    <div class="container">
-        <br/>
-       <h2>MCQ Quiz</h2>
-    </div> 
-    <br/>
+           <div class="container">
+            <br/>
+              <h2>MCQ Quiz</h2>
+            </div> 
+            <br/>
             <div class="form-group">
                  <b>Question:</b>
                 <input type="text" formControlName="questionContent" placeholder ="-Type your question-" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.questionContent.errors }" />
@@ -20,7 +20,7 @@
             <div class="form-row">
                <div class="form-group col">
                    <b>Quiz type:</b>
-                  <select formControlName ="questionTypeId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.questionTypeId.errors }">   
+                  <select formControlName ="questionTypeId" (click)="selectType($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.questionTypeId.errors }">   
                      <option [ngValue]="2">Mcq</option> 
                      <option [ngValue]="1">Text</option>
                   </select>
@@ -32,34 +32,33 @@
             <div class="form-group">
                 <b>Answers:</b>
                 <br/>
-                <!-- <input type="radio"> -->
-                  <input type="text" formControlName = "answerContent" class="form-control" placeholder="-answer-" [ngClass]="{ 'is-invalid': submitted && f.answerContent.errors }"  />
-                  <div *ngIf="submitted && f.answerContent.errors" class="invalid-feedback">
-                    <div *ngIf="f.answerContent.errors.required"> Answer is required</div>
+                  <input type="text" formControlName = "answerContent_a" class="form-control" placeholder="-Answer-" [ngClass]="{ 'is-invalid': submitted && f.answerContent_a.errors }"  />
+                  <div *ngIf="submitted && f.answerContent_a.errors" class="invalid-feedback">
+                    <div *ngIf="f.answerContent_a.errors.required"> Answer is required</div>
                    </div>
                 <br/>
-                <!-- <input type="radio"> -->
-                  <input type="text" formControlName = "answerContent" class="form-control" placeholder="-answer-" [ngClass]="{ 'is-invalid': submitted && f.answerContent.errors }"  />
-                      <div *ngIf="submitted && f.answerContent.errors" class="invalid-feedback">
-                          <div *ngIf="f.answerContent.errors.required"> Answer is required</div>
+                  <input type="text" formControlName = "answerContent_b" class="form-control" placeholder="-Answer-" [ngClass]="{ 'is-invalid': submitted && f.answerContent_b.errors }"  />
+                      <div *ngIf="submitted && f.answerContent_b.errors" class="invalid-feedback">
+                          <div *ngIf="f.answerContent_b.errors.required"> Answer is required</div>
                       </div>
                      <br/>
             </div>    
              
            <div class="form-group">
                     <b>Number of Answers</b>
-                    <select formControlName = "numberOfAnswers" class="form-control" placeholder="~numberOfAnswers~" (change)="onChangeAnswers($event)" [ngClass]="{ 'is-invalid': submitted && f.numberOfAnswers.errors }">
+                    <select formControlName = "numberOfAnswers" class="form-control" (change)="onChangeAnswers($event)" [ngClass]="{ 'is-invalid': submitted && f.numberOfAnswers.errors }">
+                        <option value="" disabled="true" [selected]="true">-Select number of answers-</option>
                         <option value=""></option>
                         <option *ngFor="let i of [1,2,3]">{{i}}</option>
                     </select>
             </div>
             
             
-            <div *ngFor="let mcqAnswer of t.controls; let i = index" class="list-group list-group-flush">
+            <div *ngFor="let answer of t.controls; let i = index" >
               <div class="list-group-item">
-                  <!-- <div [formGroup]="mcqAnswers" class="form-row"> -->
-                    <input type="text" formControlName ="answerContent" class="form-control" placeholder="-answer-"/>
-                <!-- </div>  -->
+                  <form [formGroup]="answer" class="form-row">
+                    <input type="text" formControlName ="answerContent" class="form-control" placeholder="-Answer-"/>
+                  </form> 
               </div>
             </div> 
 
@@ -76,16 +75,11 @@
         <br/>
         <input type="file" />
         <div class="text-center">
-                     <!-- <button class="btn btn-success mr-1" type="submit" type="submit">Submit</button> -->
                      <button [disabled]="loading" class="button">
                         <span *ngIf="loading" class="spinner-grow spinner-grow-sm"></span>
                         Save
                     </button>
-                </div>
-        <!-- <button [disabled]="loading" class="btn btn-primary">
-            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-           Submit
-        </button> -->
+        </div>
 </form> 
 </div>
 </div>

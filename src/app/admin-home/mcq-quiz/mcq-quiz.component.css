@@ -4,12 +4,12 @@
    margin-left: 30%;
    margin-top: 5%;
    border-radius: 0pc;
-   border-color: rgb(28, 4, 71);
+   border-color: rgb(121, 9, 112);
    border-radius: 20px;
 }
 .container{
     height: 100px;
-    background-color: rgb(59, 4, 122);
+    background-color: rgb(121, 9, 112);
     margin-top: 2px;
     border-radius: 5px;
 }
@@ -18,7 +18,7 @@ h2{
     text-align: center;
 }
 h1{
-    color:rgb(134, 6, 81);
+    color:rgb(77, 6, 47);
     text-align: center;
 }
 .label{
@@ -33,9 +33,9 @@ h1{
   margin-left: 20px;
 }
 .button {
-	background-color:#2b0572;
+	background-color:#6e0572;
 	border-radius:24px;
-	border:1px solid #2e0570;
+	border:1px solid #da5fe6;
 	display:inline-block;
 	cursor:pointer;
 	color:white;
@@ -47,10 +47,14 @@ h1{
     
 }
 .button:hover {
-	background-color:#340964;
+	background-color:#a526b1;
     color:white;
 }
 .button:active {
 	position:relative;
 	top:1px;
+}
+h3{
+    color: #b1136f;
+    text-align: center;
 }

@@ -41,7 +41,17 @@
     }
 
 button.search_icon{
-   color:rgb(181, 143, 216);
+   color:rgb(221, 149, 191);
    border-radius: 2pc;
    background-color: rgb(104, 5, 63);
 } 
+
+.add{
+   background-color: rgb(238, 74, 197);
+   align-content: left;
+   border-radius: 5pc;
+   text-decoration-color: rgb(24, 23, 23);
+}
+.page-footer{
+   margin-left: 15%;
+}

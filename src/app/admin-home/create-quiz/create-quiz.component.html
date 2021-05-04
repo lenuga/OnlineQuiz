@@ -1,0 +1,103 @@
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <form [formGroup]="selectForm">
+	      <div class="dropdown">
+          <select class="form-control" formControlName="quizType" (change)="chooseQuiz($event)">              
+               <option value="" disabled="true" [selected]="true">-Select the type of question-</option> 
+               <option value="Text">Text</option>
+               <option value="Mcq">Mcq</option>
+          </select>
+	   </div>
+     </form>
+      </div>
+  </div>
+</div>
+
+<div class="card">
+<h3 *ngIf="isAddMode">Add</h3>
+<h3 *ngIf="!isAddMode">Edit</h3>
+<div class="card-body">
+<form [formGroup]= "mcqForm" (ngSubmit)= "onSubmit()">
+           <div class="container">
+            <br/>
+              <h2>Quiz</h2>
+            </div> 
+            <br/>
+            <div class="form-group">
+                 <b>Question:</b>
+                <input type="text" formControlName="questionContent" placeholder ="-Type your question-" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.questionContent.errors }" />
+                <div *ngIf="submitted && f.questionContent.errors" class="invalid-feedback">
+                    <div *ngIf="f.questionContent.errors.required"> Question Content is required</div>
+                </div>
+            </div>
+            <div class="form-row">
+               <div class="form-group col">
+                   <b>Quiz type:</b>
+                  <select formControlName ="questionTypeId" (change)="onSelectType($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.questionTypeId.errors && f.questionTypeId.touched }">   
+                    <option [ngValue]="1">Text</option>
+                    <option [ngValue]="2">Mcq</option>
+
+                     
+                  </select>
+                  <div *ngIf="submitted && f.questionTypeId.errors" class="invalid-feedback">
+                        <div *ngIf="f.questionTypeId.errors.required">QuizType is required</div>
+                  </div>
+               </div>
+            </div>  
+            
+           <div class="form-group" *ngIf= "!type">
+                    <b>Number of Answers</b>
+                    <select formControlName = "numberOfAnswers" class="form-control" (change)="onChangeAnswers($event)" [ngClass]="{ 'is-invalid': submitted && f.numberOfAnswers.errors }">
+                        <option value="" disabled="true" [selected]="true">-Select number of answers-</option>
+                        <option value=""></option>
+                        <option *ngFor="let i of [1,2,3,4]">{{i}}</option>
+                    </select>
+            </div>
+            
+            <div *ngFor="let answer of t.controls; let i = index" >
+              <div class="list-group-item" *ngIf = "!type">
+                <form [formGroup]="answer" class="form-row">
+                <div class="row">
+                  <div class= "col-sm-8">
+                     <b>Answers:{{i}}</b>
+                    <input type="text" [id] ="'answerContent'+i" formControlName ="answerContent" class="form-control" placeholder="-Answer-" [ngClass]="{ 'is-invalid': submitted && f.answerContent.errors }"/>
+                      <div *ngIf="submitted && f.answerContent.errors" class="invalid-feedback">
+                         <div *ngIf="f.answerContent.errors.required"> CorrectAnswer is required</div>
+                      </div>
+                  </div>
+                  <div class="col-sm-4">
+                  <b>Correct Answer:</b> 
+                     <select formControlName ="correctAnswer" (change)="onCorrectAnswerSelection($event)" [id]="'correctAnswer'+i" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.correctAnswer.errors }" >
+                       <option value="True">True</option>
+                       <option value="False">False</option>
+                     </select>
+                     <div *ngIf="submitted && f.correctAnswer.errors" class="invalid-feedback">
+                         <div *ngIf="f.correctAnswer.errors.required"> CorrectAnswer is required</div>
+                     </div>
+                 </div>
+                </div>
+               </form>
+              </div>
+            </div> 
+
+            <div class="form-group" *ngIf ="type">
+               <b>Correct Answer:</b> 
+                <br/>
+                <input type="text" formControlName = "correctAnswer" class="form-control" placeholder="-Correct Answer-" [ngClass]="{ 'is-invalid': submitted && f.correctAnswer.errors }"  />
+                <div *ngIf="submitted && f.correctAnswer.errors" class="invalid-feedback">
+                    <div *ngIf="f.correctAnswer.errors.required"> CorrectAnswer is required</div>
+                </div>
+            </div> 
+        <b>Image:</b>
+        <br/>
+        <input type="file" formControlName = "img"/>
+        <div class="text-center">
+                     <button [disabled]="loading" class="button">
+                        <span *ngIf="loading" class="spinner-grow spinner-grow-sm"></span>
+                        Save
+                    </button>
+        </div>
+</form> 
+</div>
+</div>

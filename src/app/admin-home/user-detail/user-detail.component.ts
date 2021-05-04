@@ -11,7 +11,9 @@ export class UserDetailComponent implements OnInit {
   userId: any;
 user = {userId:"", firstName:"",lastName:"", address:"", emailId:"", phoneNo :"", username:"", userType:"" }
 
-  constructor(private service: ServiceService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private service: ServiceService, 
+              private router: Router, 
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
      this.userId = this.route.snapshot.paramMap.get('userId');
@@ -23,5 +25,7 @@ user = {userId:"", firstName:"",lastName:"", address:"", emailId:"", phoneNo :""
       console.log(data);
     });
   }
-
+ goBack(){
+   this.router.navigate(['/admin-home/user-list'], { relativeTo: this.route });
+ }
 }
